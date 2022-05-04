@@ -1,9 +1,12 @@
+import SummaryForm from './pages/SummaryForm'
+
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
+      <SummaryForm />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
