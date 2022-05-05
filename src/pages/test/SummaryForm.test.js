@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import SummaryForm from '../SummaryForm'
 
@@ -23,7 +23,7 @@ test('Checkbox enables order button on first click, disables on second click', (
   expect(orderButton).toBeDisabled()
 })
 
-test('popover responds to mouse hover', () => {
+test('popover responds to mouse hover', async () => {
   render(<SummaryForm />)
   const nullPopover = screen.queryByText(/no ice cream will be delivered/i)
   expect(nullPopover).not.toBeInTheDocument()
@@ -32,6 +32,7 @@ test('popover responds to mouse hover', () => {
   const popover = screen.queryByText(/no ice cream will be delivered/i)
   expect(popover).toBeInTheDocument()
   userEvent.unhover(termsAndConditions)
-  const nullPopoverAgain = screen.getByText(/no ice cream will be delivered/i)
-  expect(nullPopoverAgain).not.toBeInTheDocument()
+  await waitForElementToBeRemoved(() =>
+    screen.getByText(/no ice cream will be delivered/i)
+  )
 })
