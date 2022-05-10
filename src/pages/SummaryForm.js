@@ -24,7 +24,7 @@ export default function SummaryForm() {
   return (
     <div>
       <Form>
-        <Form.Group conrtolId='terms-and-conditions'>
+        <Form.Group conrtolid='terms-and-conditions'>
           <Form.Check
             type="checkbox"
             label={checkBoxLabel}

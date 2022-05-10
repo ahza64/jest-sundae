@@ -32,6 +32,7 @@ test('popover responds to mouse hover', async () => {
   const popover = screen.queryByText(/no ice cream will be delivered/i)
   expect(popover).toBeInTheDocument()
   userEvent.unhover(termsAndConditions)
+  // unhover ends after the test ends, so an async call is needed
   await waitForElementToBeRemoved(() =>
     screen.getByText(/no ice cream will be delivered/i)
   )
