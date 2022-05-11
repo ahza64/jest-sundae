@@ -1,4 +1,4 @@
-import SummaryForm from './pages/SummaryForm'
+import SummaryForm from './pages/summary/SummaryForm'
 
 import logo from './logo.svg';
 import './App.css';
