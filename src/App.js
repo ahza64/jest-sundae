@@ -5,7 +5,7 @@ import { OrderDetailsProvider } from './context/OrderDetails'
 
 function App() {
   return (
-    <Container>
+    <Container> 
       <OrderDetailsProvider>
         <OrderEntry />
       </OrderDetailsProvider>
