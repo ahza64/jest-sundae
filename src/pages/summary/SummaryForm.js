@@ -21,7 +21,7 @@ export default function SummaryForm({ setOrderPhase }) {
     <span>
     I agree to
       <OverlayTrigger placement='right' overlay={popover}>
-        <span style={{ color: 'blue' }}>terms and conditions</span>
+        <span style={{ color: 'blue' }}> terms and conditions</span>
       </OverlayTrigger>
     </span>
   )
@@ -29,7 +29,7 @@ export default function SummaryForm({ setOrderPhase }) {
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-        <Form.Group conrtolid='terms-and-conditions'>
+        <Form.Group controlId="terms-and-conditions">
           <Form.Check
             type="checkbox"
             label={checkBoxLabel}

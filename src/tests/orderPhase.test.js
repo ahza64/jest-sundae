@@ -1,4 +1,5 @@
-import { render, screen, userEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import App  from '../App'
 
 test('Happy path for the order phases', async () => {
@@ -8,7 +9,7 @@ test('Happy path for the order phases', async () => {
   userEvent.clear(vanillaInput)
   userEvent.type(vanillaInput, '1')
 
-  const chocolateInput = screen.findByRole('spinbutton', { name: 'Chocolate' })
+  const chocolateInput = await screen.findByRole('spinbutton', { name: 'Chocolate' })
   userEvent.clear(chocolateInput)
   userEvent.type(chocolateInput, '2')
 
@@ -26,7 +27,7 @@ test('Happy path for the order phases', async () => {
 
   expect(screen.getByText('1 Vanilla')).toBeInTheDocument()
   expect(screen.getByText('2 Chocolate')).toBeInTheDocument()
-  expect(screen.getByText('Cherries')).toBeInTheDocument()
+  expect(screen.getByText(/Cherries/i)).toBeInTheDocument()
   // alternative method to test
   // const optionItems = screen.getAllByRole('listitem')
   // const optionItemsText = optionItems.map((item) => item.textContent)
@@ -34,13 +35,13 @@ test('Happy path for the order phases', async () => {
   const tcCheckbox = screen.getByRole('checkbox', { name: /terms and conditions/i })
   userEvent.click(tcCheckbox)
 
-  const confirmOrderButton = screen.getByRole('button', /confirm order/i)
+  const confirmOrderButton = screen.getByRole('button', { name: /confirm order/i})
   userEvent.click(confirmOrderButton)
 
   const thankYouHeader = await screen.findByRole('heading', { name: /thank you/i })
   expect(thankYouHeader).toBeInTheDocument()
 
-  const orderNumber = await screen.findByRole(/order number/i)
+  const orderNumber = await screen.findByText(/your order number is/i)
   expect(orderNumber).toBeInTheDocument()
 
   const newOrderButton = screen.getByRole('button', { name: /new order/i})
