@@ -38,8 +38,14 @@ test('Happy path for the order phases', async () => {
   const confirmOrderButton = screen.getByRole('button', { name: /confirm order/i})
   userEvent.click(confirmOrderButton)
 
+  const loading = screen.getByText(/loading/i)
+  expect(loading).toBeInTheDocument()
+
   const thankYouHeader = await screen.findByRole('heading', { name: /thank you/i })
   expect(thankYouHeader).toBeInTheDocument()
+
+  const notLoading = screen.queryByText(/loading/i)
+  expect(notLoading).not.toBeInTheDocument()
 
   const orderNumber = await screen.findByText(/your order number is/i)
   expect(orderNumber).toBeInTheDocument()
