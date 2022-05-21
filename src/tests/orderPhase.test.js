@@ -22,7 +22,7 @@ test('Happy path for the order phases', async () => {
   const summaryHeading = screen.getByRole('heading', { name: 'Order Summary' })
   expect(summaryHeading).toBeInTheDocument()
 
-  const topingsHeading = screen.getByRole('heading', { name: 'Toppings $1.50' })
+  const topingsHeading = screen.getByRole('heading', { name: 'Toppings: $1.50' })
   expect(topingsHeading).toBeInTheDocument()
 
   expect(screen.getByText('1 Vanilla')).toBeInTheDocument()
@@ -60,4 +60,25 @@ test('Happy path for the order phases', async () => {
 
   await screen.findByRole('spinbutton', { name: 'Vanilla' })
   await screen.findByRole('checkbox', { name: 'Cherries' })
+})
+
+test('No toppings header when no toppings are selected', async () => {
+  render(<App />)
+
+  const vanillaInput = await screen.findByRole('spinbutton', { name: 'Vanilla' })
+  userEvent.clear(vanillaInput)
+  userEvent.type(vanillaInput, '1')
+
+  const chocolateInput = await screen.findByRole('spinbutton', { name: 'Chocolate' })
+  userEvent.clear(chocolateInput)
+  userEvent.type(chocolateInput, '2')
+
+  const orderSummaryButton = screen.getByRole('button', { name: /order sundae/i })
+  userEvent.click(orderSummaryButton)
+
+  const scoopsHeading = screen.getByRole('heading', { name: 'Scoops: $6.00' })
+  expect(scoopsHeading).toBeInTheDocument()
+
+  const toppingsHeading = screen.queryByRole('heading', { name: /toppings/i })
+  expect(toppingsHeading).not.toBeInTheDocument()
 })
