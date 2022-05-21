@@ -1,3 +1,4 @@
+import userEvent from '@testing-library/user-event'
 import { render, screen } from '../../../test-utils/testing-library-utils'
 
 import Options from '../Options'
@@ -25,4 +26,15 @@ test('Displays image for each topping option from the server', async () => {
     'MnMs topping',
     'Hot Fudge topping'
   ])
+})
+
+test('if scoops invalid input is changing the total', async () => {
+  render(<Options optionType="scoops" />)
+
+  const vanillaInput = await screen.findByRole('spinbutton', { name: 'Vanilla' })
+  userEvent.clear(vanillaInput)
+  userEvent.type(vanillaInput, '-1')
+
+  const scoopsSubtotal = screen.getByText('Scoops')
+  expect(scoopsSubtotal).toBeInTheDocument()
 })
