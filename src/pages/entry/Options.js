@@ -15,7 +15,7 @@ export default function Options({ optionType }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3030/${optionType}`)
+      .get(`https://jest-sundae-server.herokuapp.com/${optionType}`)
       .then((response) => setItems(response.data))
       .catch((error) => setError(true))
 
