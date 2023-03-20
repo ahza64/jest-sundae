@@ -7,7 +7,7 @@ import AlertBanner from '../common/AlertBanner'
 export default function OrderConfirmation({ setOrderPhase }) {
   const [ , , resetOrder] = useOrderDetails()
   const [orderNumber, setOrderNumber] = useState(null)
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false) 
 
   useEffect(() => {
     axios
