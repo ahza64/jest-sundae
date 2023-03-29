@@ -19,7 +19,7 @@ export default function ScoopsOption({ name, imagePath, updateItemCount }) {
     <Col xs={12} sm={6} md={4} lg={3} style={{ textAlign: 'center' }}>
       <img
         style={{ width: '75%' }}
-        src={`https://jest-sundae-server.herokuapp.com/${imagePath}`}
+        src={`https://jest-sundae-server.onrender.com/${imagePath}`}
         alt={`${name} scoop`}
       />
       <Form.Group

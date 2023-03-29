@@ -11,7 +11,7 @@ export default function OrderConfirmation({ setOrderPhase }) {
 
   useEffect(() => {
     axios
-      .post(`https://jest-sundae-server.herokuapp.com/order`)
+      .post(`https://jest-sundae-server.onrender.com/order`)
       .then((response) => {
         setOrderNumber(response.data.orderNumber)
       })
