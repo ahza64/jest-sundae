@@ -10,6 +10,11 @@ app.use(cors({
   credentials: true
 }))
 
+app.use(cors({
+  origin: 'https://precious-kitten-cf9a7b.netlify.app',
+  credentials: true
+}))
+
 // use middleware to serve static images
 app.use(express.static('public'))
 
